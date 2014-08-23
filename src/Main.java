@@ -8,6 +8,7 @@ public class Main {
 		Principal principal = new Principal();
 		principal.setLocationRelativeTo(null);
 		principal.setVisible(true);
+		//Apenas um teste.
 		
 	}
 }
