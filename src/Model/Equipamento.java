@@ -1,9 +1,18 @@
 package Model;
 
 public class Equipamento {
-	private String descricao;
+	private String descricaoEquep;
 	private int idEquipamento;
 	private int idMaquina;
+	private String descricaoMaq;
+
+	public String getDescricaoMaq() {
+		return descricaoMaq;
+	}
+
+	public void setDescricaoMaq(String descricaoMaq) {
+		this.descricaoMaq = descricaoMaq;
+	}
 
 	public int getIdEquipamento() {
 		return idEquipamento;
@@ -21,12 +30,12 @@ public class Equipamento {
 		this.idMaquina = idMaquina;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescricaoEquip() {
+		return descricaoEquep;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescricaoEquip(String descricao) {
+		this.descricaoEquep = descricao;
 	}
 	
 }

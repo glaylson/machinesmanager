@@ -10,8 +10,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
 
 import Fachada.Fachada;
+import Model.Equipamento;
 import Model.Maquina;
 import Model.Tecnico;
+import Util.EquipamentoComMaqTableModel;
 import Util.MaquinaTableModel;
 import Util.TecnicosTableModel;
 
@@ -60,11 +62,14 @@ public class Cadastro extends JFrame {
 	private Fachada fachada;
 	private Maquina maquina;
 	private Tecnico tecnico;
+	private Equipamento equipamento;
+	private List<Equipamento> equipamentos = null;
 	private List<Maquina> maquinas = null;
 	private List<Tecnico> tecnicos = null;
 	
 	private MaquinaTableModel maquinaTableModel;
 	private TecnicosTableModel tecnicoTableModel;
+	private EquipamentoComMaqTableModel equipamentoTableModel;
 	
 	private JTextField txtCpfTec;
 	private JTextField txtNomeTec;
@@ -76,6 +81,7 @@ public class Cadastro extends JFrame {
 	private JTextField txtDescricaoEquip;
 	private JTextField txtCodigoEquip;
 	private JTextField textField_3;
+	private JTable tableEquipamento;
 	
 
 	/**
@@ -102,11 +108,13 @@ public class Cadastro extends JFrame {
 		fachada = new Fachada();
 		atualizarTabelaMaquina();
 		atualizarTabelaTecnicos();
+		atualizarTabelaEquipamento();
+		
 	}
 	
 	//Funções Maquinas
 	public void atualizarTabelaMaquina(){
-		maquinas = fachada.listar();
+		maquinas = fachada.listar(); // maquinas recebe uma lista de maquinas que vem referencido lá da maquinaDAO.
 		maquinaTableModel = new MaquinaTableModel(maquinas);
 		tableMaquinas.setModel(maquinaTableModel);
 	}
@@ -184,7 +192,13 @@ public class Cadastro extends JFrame {
 		tableTec.setModel(tecnicoTableModel);
 	}
 	
-	
+	//Funções Equipamentos
+	public void atualizarTabelaEquipamento(){
+		equipamentos = fachada.listarEquipComMaquina();
+		equipamentoTableModel = new EquipamentoComMaqTableModel(equipamentos);
+		tableEquipamento.setModel(equipamentoTableModel);
+	}
+
 	
 	/**
 	 * Create the frame.
@@ -337,7 +351,7 @@ public class Cadastro extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Dados da M\u00E1quina", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Dados do Equipamento", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(23, 11, 513, 153);
 		panelEquipamento.add(panel_1);
 		
@@ -394,6 +408,9 @@ public class Cadastro extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 62, 493, 302);
 		panel_2.add(scrollPane);
+		
+		tableEquipamento = new JTable();
+		scrollPane.setViewportView(tableEquipamento);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);

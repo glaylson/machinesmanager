@@ -14,7 +14,7 @@ public class MaquinaDAO {
 	private PreparedStatement stmt;
 	
 	public  void inserir(Maquina maquina){
-		String sql = "INSERT INTO MAQUINA (DESCRICAO, TIPO) VALUES (?,?)";
+		String sql = "INSERT INTO MAQUINA (DESCRICAOMAQ, TIPO) VALUES (?,?)";
 		try {
 			this.connection = new ConexaoSql().getConnection();
 			this.stmt = this.connection.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class MaquinaDAO {
 	}
 	
 	public  void alterar(Maquina maquina){
-		String sql = "UPDATE MAQUINA SET TIPO = ?, DESCRICAO = ? WHERE IDMAQUINA = ?";
+		String sql = "UPDATE MAQUINA SET TIPO = ?, DESCRICAOMAQ = ? WHERE IDMAQUINAD = ?";
 		try {
 			this.connection = new ConexaoSql().getConnection();
 			this.stmt = this.connection.prepareStatement(sql);
@@ -93,7 +93,7 @@ public class MaquinaDAO {
 			while(rs.next()){
 				maquina = new Maquina();
 				maquina.setIdMaquina(rs.getInt("idmaquina"));
-				maquina.setDescricao(rs.getString("descricao"));
+				maquina.setDescricao(rs.getString("descricaomaq"));
 				maquina.setTipo(rs.getString("tipo"));
 				maquinas.add(maquina);
 			}
@@ -126,7 +126,7 @@ public class MaquinaDAO {
 			while(rs.next()){
 				maquina = new Maquina();
 				maquina.setIdMaquina(rs.getInt("idmaquina"));
-				maquina.setDescricao(rs.getString("descricao"));
+				maquina.setDescricao(rs.getString("descricaomaq"));
 				maquina.setTipo(rs.getString("tipo"));
 				maquinas.add(maquina);
 			}

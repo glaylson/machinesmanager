@@ -29,7 +29,7 @@ public class TecnicosTableModel extends AbstractTableModel{
 	public String getColumnName(final int column){
 		switch (column) {
 		case 0:
-			return "CODIGO";
+			return "CÓDIGO";
 		case 1:
 			return "NOME";	
 		case 2:

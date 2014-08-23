@@ -32,6 +32,9 @@ public class EquipamentoControl {
 	public List<Equipamento> listar(){
 		return equipamentoDAO.listar();
 	}
+	public List<Equipamento> listaEquipamentos(){
+		return equipamentoDAO.listarEquipComMaquina();
+	}
 	
 	public List<Maquina> pesquisarId(Maquina maquina){
 		return tecnicoDAO.pesquisarId(maquina);

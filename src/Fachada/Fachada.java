@@ -61,6 +61,9 @@ public class Fachada {
 	public List<Equipamento> listarEquip(){
 		return this.equipamentoControl.listar();
 	}
+	public List<Equipamento> listarEquipComMaquina(){
+		return this.equipamentoControl.listaEquipamentos();
+	}
 	/*public List<Tecnico> pesquisarId(Tecnico tecnico){
 		return this.tecnicoControl.pesquisarId(tecnico);
 	}*/

@@ -19,7 +19,7 @@ public class EquipamentoDAO {
 			this.connection = new ConexaoSql().getConnection();
 			this.stmt = this.connection.prepareStatement(sql);
 			this.stmt.setInt(1, equipamento.getIdMaquina());
-			this.stmt.setString(2, equipamento.getDescricao());
+			this.stmt.setString(2, equipamento.getDescricaoEquip());
 			
 			this.stmt.execute();
 			this.stmt.close();
@@ -92,9 +92,44 @@ public class EquipamentoDAO {
 			
 			while(rs.next()){
 				equipamento = new Equipamento();
-				equipamento.setIdMaquina(rs.getInt("idmaquina"));
-				equipamento.setDescricao(rs.getString("descricao"));
+				equipamento.setIdEquipamento(rs.getInt("idequipamento"));
+				equipamento.setDescricaoEquip(rs.getString("descricaoequip"));
 				
+				equipamentos.add(equipamento);
+			}
+			this.stmt.close();
+			rs.close();
+			
+			return equipamentos;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			try {
+				this.connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
+	public List<Equipamento> listarEquipComMaquina(){
+		String sql = "select equipamento.idequipamento, equipamento.descricaoequip, maquina.idmaquina, maquina.descricaomaq from maquina, equipamento where equipamento.idmaquina = 2 and equipamento.idmaquina = maquina.idmaquina";
+		ResultSet rs = null;
+		List<Equipamento> equipamentos = new ArrayList<Equipamento>();
+		Equipamento equipamento = null;
+		try {
+			this.connection = new ConexaoSql().getConnection();
+			this.stmt = this.connection.prepareStatement(sql);
+			
+			rs = this.stmt.executeQuery();
+			
+			//set os valors para os atributos do objeto equipamento pegando os da tabela que é a consulta do sql acima.
+			while(rs.next()){
+				equipamento = new Equipamento();
+				equipamento.setIdEquipamento(rs.getInt("idequipamento"));
+				equipamento.setDescricaoEquip(rs.getString("descricaoequip"));
+				equipamento.setIdMaquina(rs.getInt("idmaquina"));
+				equipamento.setDescricaoMaq(rs.getString("descricaomaq"));
 				equipamentos.add(equipamento);
 			}
 			this.stmt.close();
