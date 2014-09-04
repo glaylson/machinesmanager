@@ -49,6 +49,7 @@ import java.awt.SystemColor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
 
 public class Cadastro extends JFrame {
 
@@ -398,6 +399,10 @@ public class Cadastro extends JFrame {
 		JButton button_3 = new JButton("Novo");
 		button_3.setBounds(61, 119, 89, 23);
 		panel_1.add(button_3);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(348, 67, 28, 20);
+		panel_1.add(comboBox);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
